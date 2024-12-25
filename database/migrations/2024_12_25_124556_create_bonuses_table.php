@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bonuses', function (Blueprint $table) {
-            $table->string('bonus_unique_id');
-            $table->string('boarding_house_uid');
+            $table->uuid('bonus_unique_id')->primary();
+            $table->foreignUuid('boarding_house_uid')->constrained('boarding_houses', 'boarding_house_uid');
             $table->string('name');
             $table->text('description');
             $table->timestamps();

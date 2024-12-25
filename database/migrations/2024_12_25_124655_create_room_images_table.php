@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('room_images', function (Blueprint $table) {
-            $table->string('image_unique_id');
-            $table->string('room_unique-id');
+            $table->uuid('image_unique_id')->primary();
+            $table->foreignUuid('room_unique_id')->constrained('rooms', 'room_unique_id');
             $table->string('image_url');
             $table->timestamps();
         });

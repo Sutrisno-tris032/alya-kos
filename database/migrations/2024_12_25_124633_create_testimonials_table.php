@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('testimonials', function (Blueprint $table) {
-            $table->string('testimonials_unique_id');
-            $table->string('boarding_house_uid');
+            $table->uuid('testimonials_unique_id')->primary();
+            $table->foreignUuid('boarding_house_uid')->constrained('boarding_houses', 'boarding_house_uid');
             $table->string('photo');
             $table->string('content');
             $table->integer('rating');

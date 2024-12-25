@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('boarding_houses', function (Blueprint $table) {
-            $table->string('boarding_house_uid');
+            $table->uuid('boarding_house_uid')->primary();
             $table->string('name');
             $table->string('slug');
             $table->string('thumbnail');
-            $table->integer('city_id');
-            $table->integer('category_id');
+            $table->foreignId('city_id')->constrained('cities', 'id');
+            $table->foreignId('category_id')->constrained('categories','id');
             $table->text('description');
             $table->integer('price');
             $table->text('address');
